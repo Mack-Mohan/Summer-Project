@@ -50,7 +50,7 @@ router.put('/login',async (req,res)=>{
         if(doMAtch){
             const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
             foundUser.password=undefined
-            res.json({message:'logged in successfully..!',token})
+            res.json({message:'logged in successfully..!',token,foundUser})
         }else{
             return res.status(422).json({message:'Incorrect Email or password'})
         }

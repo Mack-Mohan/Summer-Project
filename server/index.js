@@ -8,8 +8,8 @@ const cors = require('cors');
 
 //------------------->Mongoose parameters<----------------------------------//
 
-// const MONGOURI = "mongodb+srv://Mack-Mohan:Black@cluster0.kphcr.mongodb.net/?retryWrites=true&w=majority";
-const MONGOURI = "mongodb://saiman:saiman@cluster0-shard-00-00.l5leq.mongodb.net:27017,cluster0-shard-00-01.l5leq.mongodb.net:27017,cluster0-shard-00-02.l5leq.mongodb.net:27017/speech?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+const MONGOURI = "mongodb+srv://Mack-Mohan:Black@cluster0.kphcr.mongodb.net/?retryWrites=true&w=majority";
+// const MONGOURI = "mongodb://saiman:saiman@cluster0-shard-00-00.l5leq.mongodb.net:27017,cluster0-shard-00-01.l5leq.mongodb.net:27017,cluster0-shard-00-02.l5leq.mongodb.net:27017/speech?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 const options = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
