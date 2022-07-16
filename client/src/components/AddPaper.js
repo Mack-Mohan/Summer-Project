@@ -6,6 +6,8 @@ import Input from '@mui/material/Input';
 
 function AddPaper()
 {
+
+  const {login,token} = JSON.parse(localStorage.getItem('local'));
     const [pdf,setPdf]= useState(null);
 
     const [video,setVideo]= useState(null);
@@ -80,6 +82,7 @@ function AddPaper()
 
 
     return (
+      login?
         <div className = " container col-md-6 offset-md-3 mt-5">
           <form style = {formStyle} onSubmit={handleSubmit}  encType="multipart/form-data"> 
           <div className="form-group h5">
@@ -136,7 +139,7 @@ function AddPaper()
              type = "submit" >Submit</button>
             </div>
            </form>  
-        </div>
+        </div>:<div>something simekalds</div>
     );
 }
 export default AddPaper;

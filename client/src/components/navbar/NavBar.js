@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './navbar.css';
 function NavBar()
 {
-    const isLoggedIn = true;
+    const {login} = JSON.parse(localStorage.getItem('local'));
+    
     return (
 <>
-        {isLoggedIn?
+        {!login?
   <Navbar style={{height:"80px"}} bg="dark" variant="dark">
     <Navbar.Brand href="/">
     <img
@@ -35,7 +36,11 @@ function NavBar()
     <Nav className="ms-auto  nav-item" > 
       <Nav.Link   href="/home">Home</Nav.Link>
       <Nav.Link  href="/profile">Profile</Nav.Link>
-      <Nav.Link  href="/home">Logout</Nav.Link>
+      <Nav.Link  href="/login" onClick={()=>{localStorage.setItem('local',JSON.stringify({
+        login:false,
+        token:""
+      }))
+      console.log(localStorage.getItem('local'))}}>Logout</Nav.Link>
     </Nav>
   </Navbar>
         }

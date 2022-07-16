@@ -13,6 +13,7 @@ import axios from "axios";
 function App() {
 
   
+const [newUser, setNewUser] = useState({});
 
 const [documentList,setDocumentList] = useState([]);
 if(documentList.length==0){
@@ -39,9 +40,24 @@ console.log(user);
 
 function handleLogin(e,user){
 e.preventDefault();
-axios.get(`http://localhost:5000/`)
-.then((res)=>console.log(res));
-
+fetch('http://localhost:5000/auth/login',{
+  method:'put',
+  headers:{
+    'Content-Type': 'application/json'
+  },body:JSON.stringify({
+    email:user.email,pass:user.password
+  })
+}).then(res=>res.json())
+.then(result=>{
+  setNewUser(result.foundUser)
+  console.log(newUser)
+  localStorage.setItem('local',JSON.stringify({
+    token:result.token,
+    login:true
+  }
+  
+  ))
+}).catch(err=>console.log(err))
 }
 
 
@@ -50,7 +66,9 @@ axios.get(`http://localhost:5000/`)
   return (
     <BrowserRouter>
 
-      <NavBar/>
+      <NavBar 
+       
+      />
      
       <Routes>
 
@@ -77,7 +95,9 @@ axios.get(`http://localhost:5000/`)
         <LoginPage handleLogin= {handleLogin}/>
       } />
       <Route exact path="/addpaper" 
-      element ={<AddPaper />
+      element ={<AddPaper
+        
+       />
       } />
 
 <Route exact path="/video/:name" 
