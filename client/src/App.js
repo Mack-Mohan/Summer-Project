@@ -24,40 +24,36 @@ if(documentList.length==0){
 }
 
 function handleSubmit(e,user){
-  e.preventDefault();
-// axios.put(`http://localhost:5000/auth/signup`,{name:user.name,email:user.email,pass:user.password,number:user.number}).catch(err=>console.log(err));
-fetch('http://localhost:5000/auth/signup',{
-  method:'put',
-  headers:{
-    'Content-Type': 'application/json'
-  },body:JSON.stringify({
-    name:user.name,email:user.email,pass:user.password,number:user.number
-  })
-}).then(res=>res.json())
-.then(result=>console.log(result)).catch(err=>console.log(err))
-console.log(user);
+    e.preventDefault();
+  // axios.put(`http://localhost:5000/auth/signup`,{name:user.name,email:user.email,pass:user.password,number:user.number}).catch(err=>console.log(err));
+  fetch('http://localhost:5000/auth/signup',{
+    method:'put',
+    headers:{
+      'Content-Type': 'application/json'
+    },body:JSON.stringify({
+      name:user.name,email:user.email,pass:user.password,number:user.number
+    })
+  }).then(res=>res.json())
+  .then(result=>console.log(result)).catch(err=>console.log(err))
+  console.log(user);
 }
 
 function handleLogin(e,user){
-e.preventDefault();
-fetch('http://localhost:5000/auth/login',{
-  method:'put',
-  headers:{
-    'Content-Type': 'application/json'
-  },body:JSON.stringify({
-    email:user.email,pass:user.password
-  })
-}).then(res=>res.json())
-.then(result=>{
-  setNewUser(result.foundUser)
-  console.log(newUser)
-  localStorage.setItem('local',JSON.stringify({
-    token:result.token,
-    login:true
-  }
-  
-  ))
-}).catch(err=>console.log(err))
+  e.preventDefault();
+  // axios.get(`http://localhost:5000/`)
+  // .then((res)=>console.log(res));
+  fetch('http://localhost:5000/auth/login',{
+    method:'put',
+    headers:{
+      'Content-Type': 'application/json'
+    },body:JSON.stringify({
+      email:user.email,pass:user.password
+    })
+  }).then(res=>res.json())
+  .then(result=>{
+    console.log(result)
+    localStorage.setItem('jwt',result.token)
+  }).catch(err=>console.log(err))
 }
 
 
