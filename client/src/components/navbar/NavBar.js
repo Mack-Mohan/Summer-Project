@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './navbar.css';
+import { UserContext } from "../../App";
 function NavBar()
 {
+<<<<<<< HEAD
     const {login} = JSON.parse(localStorage.getItem('local'));
     
+=======
+	const { state, dispatch } = useContext(UserContext);
+  // console.log(state);
+    const isLoggedIn = true;
+>>>>>>> b4938244250a6c2a110b742c01c8bd7609ebb9f3
     return (
 <>
         {!login?
