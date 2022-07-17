@@ -5,6 +5,9 @@ var document  = new mongoose.Schema({
     description : {type:String},
     pdf: {type:String},
     video: {type:String},
+    name: {type:String,required:true},
+    email : {type:String,required:true},
+    mobileNum : {type:Number,required:true}
 
 });
 

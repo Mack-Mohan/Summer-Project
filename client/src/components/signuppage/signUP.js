@@ -53,7 +53,7 @@ const formStyle  = {
           <div className="form-group h5">
             <label htmlFor="name">Mobile Number</label>
             <input 
-            type= "number" 
+            type= "text" 
             name="number" 
             className="form-control" 
             id="number" 

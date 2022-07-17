@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const { JWT_SECRET } = require('../config/keys');
+const  JWT_SECRET  = process.env.JWT_SECRET;
+require('dotenv').config();
 const usersLogin = mongoose.model('user');
-const JWT_SECRET = "lfkasnlfkdjsaui39302423eh932h9jd9j329";
 const authmalware = require('../authmiddleware')
 
 router.get('/',authmalware,(req,res)=>{
@@ -54,11 +54,11 @@ router.put('/login',async (req,res)=>{
             return res.status(422).json({message:'Incorrect Email or password'})
         }
         // const newpaasward = await bcrypt.hash(pass,12)
-        const doMAtch = bcrypt.compare(pass,foundUser.password)
+        const doMAtch = await bcrypt.compare(pass,foundUser.password)
         if(doMAtch){
             const token = jwt.sign({_id:foundUser._id},JWT_SECRET);
             foundUser.password=undefined
-            res.json({message:'logged in successfully..!',token,foundUser})
+            res.status(200).json({message:'logged in successfully..!',token,foundUser})
         }else{
             return res.status(422).json({message:'Incorrect Email or password'})
         }

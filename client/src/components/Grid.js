@@ -7,9 +7,10 @@ function grid(props) {
     return (
       <Row xs={1} md={2} className="g-4 px-20 ">
         {documentList.map((document) => (
-          <Col >
+          <Col key = {document._id} >
           
           <Card 
+          
             document = {document}
           />
             

@@ -1,20 +1,23 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Button from '@mui/material/Button';
 import FileUploadIcon from '@mui/icons-material/UploadFileOutlined';
 import Input from '@mui/material/Input';
-
+import { UserContext } from "../App";
 function AddPaper()
 {
-
-  const {login,token} = JSON.parse(localStorage.getItem('local'));
+  
+    const { state, dispatch } = useContext(UserContext);
+    const isLoggedIn = state.loggedIn;
+    const user = state.user;
     const [pdf,setPdf]= useState(null);
 
     const [video,setVideo]= useState(null);
 
     const [document,setDocument]= useState({
         title: "",
-        description:"",
+        description:""
     });
 
     function documentChange(e){
@@ -67,10 +70,13 @@ function AddPaper()
             title: document.title,
             description: document.description,
             pdf: pdf.name,
-            video: video.name
+            video: video.name,
+            email: user.email,
+            name :user.name,
+            mobileNum:user.mobileNum
           }
 
-          console.log(document);
+          console.log(data);
           axios.post('http://localhost:5000/upload/document', data);
      
         }
@@ -82,7 +88,7 @@ function AddPaper()
 
 
     return (
-      login?
+        (isLoggedIn)?
         <div className = " container col-md-6 offset-md-3 mt-5">
           <form style = {formStyle} onSubmit={handleSubmit}  encType="multipart/form-data"> 
           <div className="form-group h5">
@@ -139,7 +145,11 @@ function AddPaper()
              type = "submit" >Submit</button>
             </div>
            </form>  
-        </div>:<div>something simekalds</div>
+        </div>
+        : <div>
+        <Navigate to="/login" />
+        
+        </div>
     );
 }
 export default AddPaper;
